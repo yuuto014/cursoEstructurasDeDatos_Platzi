@@ -31,13 +31,13 @@ class MySinglyLinkedList {
         const node = new Node(value);
         this.tail.next = node;
         this.tail = node;
-        this.length++
+        this.length++;
     }
     prepend(value){
         const node = new Node(value);
         node.next = this.head;
         this.head = node
-        this.length++
+        this.length++;
     }
     insert(index,value){
         if (index >= this.length){
@@ -48,14 +48,11 @@ class MySinglyLinkedList {
         }
 
         const node = new Node(value);
-        const firstPointer = this.getTheIndex(index -1);
-        const holdingPointer =  firstPointer.next;
-
-        firstPointer.next = node;
-        node.next = holdingPointer;
-        // node.next = this.tail;
-        // this.head = node;
+        const pointer = this.getTheIndex(index-1);
+        node.next = pointer.next;
+        pointer.next = node;
         this.length++
+        return this
     }
     getTheIndex(index){
         let couter = 0;
@@ -74,3 +71,6 @@ mySinglyLinkedList
 mySinglyLinkedList.append(2);
 mySinglyLinkedList
 mySinglyLinkedList.prepend(0);
+mySinglyLinkedList.insert(2,5);
+mySinglyLinkedList.insert(0,6);
+
