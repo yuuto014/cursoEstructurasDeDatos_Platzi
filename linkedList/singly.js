@@ -41,10 +41,12 @@ class MySinglyLinkedList {
     }
     insert(index,value){
         if (index >= this.length){
-            return this.append(value);
+            this.append(value);
+            return this;
         }
         else if (index <= 0 ){
-            return this.prepend(value);
+            this.prepend(value);
+            return this;
         }
 
         const node = new Node(value);
@@ -53,6 +55,16 @@ class MySinglyLinkedList {
         pointer.next = node;
         this.length++
         return this
+    }
+    remove(index){
+        if(0 > index >= this.length ){
+            return `El indice ${index} se encuentra fuera del rango`;
+        }
+        const pointer = this.getTheIndex(index);
+        const node = this.getTheIndex(index-1);
+        node.next = pointer.next;
+        this.length--;
+        return this;
     }
     getTheIndex(index){
         let couter = 0;
@@ -73,4 +85,5 @@ mySinglyLinkedList
 mySinglyLinkedList.prepend(0);
 mySinglyLinkedList.insert(2,5);
 mySinglyLinkedList.insert(0,6);
+mySinglyLinkedList.remove(3);
 
