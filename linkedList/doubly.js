@@ -1,27 +1,17 @@
- // 1 --> 2 --> 3 --> 4 --> 5 --> null
-
-// let singlyLinkedList = {
-//     value: 1, next:{
-//         value: 2, next: {
-//             value: 3, next: {
-//                 value: 4, next: null
-//             }
-//         }
-//     }
-// }
-
 class Node{
     constructor(value){
         this.value = value;
         this.next = null;
+        this.prev = null;
     }
 }
 
-class MySinglyLinkedList {
+class MyDoublyLinkedList {
     constructor(value){
         this.head = {
             value: value,
             next: null,
+            prev: null,
         }
         this.tail = this.head;
 
@@ -29,6 +19,7 @@ class MySinglyLinkedList {
     }
     append(value){
         const node = new Node(value);
+        node.prev = this.tail;
         this.tail.next = node;
         this.tail = node;
         this.length++;
@@ -37,9 +28,9 @@ class MySinglyLinkedList {
     prepend(value){
         const node = new Node(value);
         node.next = this.head;
-        this.head = node
+        this.head.prev = node;
+        this.head = node;
         this.length++;
-        return this;
     }
     insert(index,value){
         if (index >= this.length){
@@ -85,12 +76,7 @@ class MySinglyLinkedList {
     }
 }
 
-let mySinglyLinkedList = new MySinglyLinkedList(1);
-mySinglyLinkedList
-mySinglyLinkedList.append(2);
-mySinglyLinkedList
-mySinglyLinkedList.prepend(0);
-mySinglyLinkedList.insert(2,5);
-mySinglyLinkedList.insert(0,6);
-mySinglyLinkedList.remove(3);
-
+let myDoublyLinkedList = new MyDoublyLinkedList(1);
+myDoublyLinkedList.append(2);
+myDoublyLinkedList.prepend(0);
+myDoublyLinkedList.insert(1,4);
