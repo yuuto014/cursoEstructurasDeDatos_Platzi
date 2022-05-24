@@ -28,16 +28,44 @@ class MySinglyLinkedList {
         this.length = 1;
     }
     append(value){
-        const nodo = new Node(value);
-        this.tail.next = nodo;
-        this.tail = nodo;
+        const node = new Node(value);
+        this.tail.next = node;
+        this.tail = node;
         this.length++
     }
     prepend(value){
-        const nodo = new Node(value);
-        nodo.next = this.head;
-        this.head = nodo
+        const node = new Node(value);
+        node.next = this.head;
+        this.head = node
         this.length++
+    }
+    insert(index,value){
+        if (index >= this.length){
+            return this.append(value);
+        }
+        else if (index <= 0 ){
+            return this.prepend(value);
+        }
+
+        const node = new Node(value);
+        const firstPointer = this.getTheIndex(index -1);
+        const holdingPointer =  firstPointer.next;
+
+        firstPointer.next = node;
+        node.next = holdingPointer;
+        // node.next = this.tail;
+        // this.head = node;
+        this.length++
+    }
+    getTheIndex(index){
+        let couter = 0;
+        let currentNode  = this.head;
+
+        while(couter != index){
+            currentNode = currentNode.next;
+            couter++;
+        }
+        return currentNode;
     }
 }
 
