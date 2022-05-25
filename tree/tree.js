@@ -39,6 +39,39 @@ class BinarySearchTree{
             }
         }
     }
+    search(value){
+        if(!this.root){
+            return `El arbol esta vacio`;
+        }
+        else{
+            let currentNode = this.root
+            while(true){
+                if(value == currentNode.value){
+                    return currentNode;
+                }
+                else if(value < currentNode.value){
+                    if(!currentNode.left){
+                        return `No existe el dato buscado `;
+                    }
+                    currentNode = currentNode.left;
+                }
+                else{
+                    if(!currentNode.right){
+                        return `No existe el dato buscado `;
+                    }
+                    currentNode =currentNode.right;
+                }
+            }
+        } 
+    }
 }
 
 const myTree = new BinarySearchTree();
+myTree.insert(10);
+myTree.insert(20);
+myTree.insert(4);
+myTree.insert(2);
+myTree.insert(17);
+myTree.insert(170);
+myTree.insert(8);
+myTree.search(170);
